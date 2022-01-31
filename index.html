@@ -17,7 +17,7 @@
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
   <!-- CDN Css Personalizado -->
   <link rel="stylesheet" href="assets/css/estilos.css" />
-  <title>YANAPAY!!! &#x1f91f;</title>
+  <title> &#x1f91f; YANAPAY</title>
 </head>
 
 <body class="gradient-custom">
@@ -27,41 +27,43 @@
   <div class="main-2">
     <img src="assets/img/image 03.png" alt="Logo Yanapay">
   </div>
-  <div class="child">
-    <img src="assets/img/image 01.png" alt="">
-  </div>
   <div class="container mt-0 me-5">
-    <div class="container pt-5 pb-5 h-100" id="login">
+    <div class="container pt-5 pb-10 h-100" id="login">
       <div class="d-flex flex-row-reverse h-100">
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
           <div class="card bg-light text-black">
             <div class="card-body pt-2 px-11 text-center">
               <div class="mb-md-4 mt-md-4">
-                <h2 class=" mb-3 " style="font-family: 'Dosis', sans-serif;">Inicia sesión y aprende del lenguaje de
+                <h2 class=" mb-3 " style="font-family: 'Dosis', sans-serif;" id="titulo-login">Inicia sesión y aprende del lenguaje de
                   señas </h2>
+                  <h2 class=" mb-3 d-none" style="font-family: 'Dosis', sans-serif;" id="titulo-registro">REGISTRO</h2> 
                 <p class="text-black-50 mb-4" id="mensaje-inicio">
                   Por favor, ingrese su email y contraseña.
                 </p>
                 <p class="text-black-50 mb-4 d-none" id="mensaje-registro">
-                  Por favor, ingresa un email y una contraseña.
+                  Por favor, ingresa un nombre de usuario, un email y una contraseña.
                 </p>
                 <div id="alert-login" class="alert alert-danger d-none" role="alert">
-                  Email y contraseña incorrectos.
+                  Email o contraseña incorrectos.
                 </div>
-                <div
-                    id="alert-login-2"
-                    class="alert alert-danger d-none"
-                    role="alert"
-                  >
-                    Email y contraseña no se encuentran registrados en el
-                    sistema.
-                  </div>
+                <div id="alert-login-2" class="alert alert-danger d-none" role="alert">
+                  Email y contraseña no se encuentran registrados en el
+                  sistema.
+                </div>
                 <div id="alert-login-registro" class="alert alert-danger d-none" role="alert">
                   Email ya se encuentra registrado, favor utilizar otro.
                 </div>
                 <form id="IngresoEmailForm" action="">
 
-                  <div class="input-group">
+                  <div class="input-group mt-4 d-none" id="nombre">
+                    <label class="input-fill-usuario">
+                      <input type="text" name="text" required class="usuario" />
+                      <span class="input-label"></span>
+                      <i class="fas fa-user"></i>
+                    </label>
+                  </div>
+
+                  <div class="input-group mt-4">
                     <label class="input-fill">
                       <input type="email" name="email" id="email" required />
                       <span class="input-label">Ingresa tu correo: </span>
@@ -83,14 +85,17 @@
 
                   <input type="submit" value="Iniciar Sesión" class="btn-login" id="iniciaSesion" />
 
-                  <input type="submit" value="Registrarse" class="btn-login" id="registrate"/>
+                  <input type="submit" value="Registrarse" class="btn-login" id="registrate" />
 
                 </form>
-
+                <p class="text-black-50 mt-4 mb-0" id="mensaje-inicio" > <strong>
+                    Ingresa con otras plataformas </strong>
+                </p>
                 <div class="social-networks">
                   <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
                   <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
-                  <a href="#" id= "Iniciar-google-1" class="google"><i id= "Iniciar-google-2"class="fab fa-google-plus-g"></i></a>
+                  <a href="#" id="Iniciar-google-1" class="google"><i id="Iniciar-google-2"
+                      class="fab fa-google-plus-g"></i></a>
                   <a href="#" class="youtube"><i class="fab fa-youtube"></i></a>
                   <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
                 </div>

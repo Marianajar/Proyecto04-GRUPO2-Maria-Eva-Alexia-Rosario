@@ -31,12 +31,43 @@ $(document).ready(function () {
     $("#mensaje-inicio").hide();
     $("#mensaje-registro").removeClass("d-none");
     $("#mensaje-registro").addClass("d-block");
+    $("#nombre").removeClass("d-none");
+    $("#nombre").addClass("d-block");
+    $("#titulo-registro").removeClass("d-none");
+    $("#titulo-registro").addClass("d-block");
+    $("#titulo-login").addClass("d-none");
 
     auth.createUserWithEmailAndPassword(correo, contraseña)
       .then((userCredential) => {
         // Signed in
         console.log("Usuario Creado");
-        addFullName(fullName);
+
+        auth.signInWithEmailAndPassword(correo, contraseña)
+          .then((userCredential) => {
+            alert("registrado:)")
+            // Signed in
+            console.log("Usuario Logueado con email y contraseña");
+            $("#IngresoEmailForm").trigger("reset");
+            $("#alert-login").hide();
+            $("#alert-login-2").hide();
+            $("#alert-login-registro").hide();
+            //$(location).attr('href',"/index02.html");
+            location.href = "index02.html";
+
+          })
+          .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.log(errorCode, errorMessage)
+            if (errorCode == 'auth/argument-error' || errorCode == "auth/wrong-password") {
+              $("#alert-login").removeClass("d-none");
+              $("#alert-login").addClass("d-block");
+            } if (errorCode == "auth/user-not-found") {
+              $("#alert-login-2").removeClass("d-none");
+              $("#alert-login-2").addClass("d-block");
+            }
+
+          });
 
         // ...
       })
@@ -65,7 +96,6 @@ $(document).ready(function () {
         $("#alert-login").hide();
         $("#alert-login-2").hide();
         $("#alert-login-registro").hide();
-
       })
       .catch((error) => {
         var errorCode = error.code;
@@ -88,23 +118,40 @@ $(document).ready(function () {
     e.preventDefault();
 
     auth.signInWithPopup(provider)
-    .then((result) => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      // The signed-in user info.
-      const user = result.user;
-      // ...
-    }).catch((error) => {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.email;
-      // The AuthCredential type that was used.
-      const credential = GoogleAuthProvider.credentialFromError(error);
-      // ...
-    });
-  
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        // ...
+      }).catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+      });
+
   });
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      // Si usuario esta conectado
+      location.href = "index02.html";
+    } else {
+      
+    }
+  });
+
 });
+
+//Perfil de usuario
+
+var settingsmenu = document.querySelector(".settings-menu")
+
+function settingsMenuToggle(){
+settingsmenu.classList.toggle("settings-menu-height")
+}
